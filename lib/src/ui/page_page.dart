@@ -47,7 +47,10 @@ class PagePage extends StatelessWidget {
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
         itemBuilder: (BuildContext context, int index) {
           return Column(children: <Widget>[
-            ListTile(title: Text(pages.data[index].title)),
+            Text(
+              pages.data[index].title,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             //MarkdownBody(data: html2md.convert(pages.data[index].content))
           ]);
         });

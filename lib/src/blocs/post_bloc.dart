@@ -16,7 +16,7 @@ class PostBloc extends BlocBase {
 
   fetchAllPost() async {
     PostModel postModel = await _repository.fetchAllPosts();
-    postModel.results ?? _inPostList.add(postModel.results);
+    _inPostList.add(postModel.results);
   }
 
   PostBloc() {

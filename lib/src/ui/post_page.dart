@@ -47,7 +47,7 @@ class PostPage extends StatelessWidget {
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
         itemBuilder: (BuildContext context, int index) {
           return Column(children: <Widget>[
-            ListTile(title: Text(posts.data[index].title)),
+            Text(posts.data[index].title),
             //MarkdownBody(data: html2md.convert(posts.data[index].content))
           ]);
         });

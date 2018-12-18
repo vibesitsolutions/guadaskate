@@ -16,7 +16,7 @@ class PageBloc extends BlocBase {
 
   fetchAllPages() async {
     PageModel pageModel = await _repository.fetchAllPages();
-    pageModel.results ?? _inPageList.add(pageModel.results);
+    _inPageList.add(pageModel.results);
   }
 
   PageBloc() {

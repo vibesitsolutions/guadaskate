@@ -8,6 +8,8 @@ class PageModel {
     }
   }
 
+  PageModel();
+
   List<Page> get results => _results;
 }
 

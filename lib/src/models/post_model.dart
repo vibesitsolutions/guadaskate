@@ -1,17 +1,17 @@
-class PostModel{
+class PostModel {
   List<Post> _results = [];
 
   PostModel.fromJson(List json) {
-    for(int i = 0; i < json.length; i++){
+    for (int i = 0; i < json.length; i++) {
       Post post = Post(json[i]);
       _results.add(post);
     }
   }
 
+  PostModel();
+
   List<Post> get results => _results;
-
 }
-
 
 class Post {
   int _id;
@@ -23,8 +23,7 @@ class Post {
   String _commentStatus;
   int _author;
 
-
-  Post(post){
+  Post(post) {
     _id = post['id'];
     _date = post['date'];
     _lastModify = post['modified'];
@@ -50,6 +49,4 @@ class Post {
   DateTime get lastModify => DateTime.parse(_lastModify);
 
   DateTime get date => DateTime.parse(_date);
-
-
 }

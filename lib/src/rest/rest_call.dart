@@ -14,7 +14,7 @@ class RestCall {
     try {
       return PostModel.fromJson(json.decode(response));
     } catch (e) {
-      return null;
+      return PostModel();
     }
   }
 
@@ -24,7 +24,7 @@ class RestCall {
     try {
       return PageModel.fromJson(json.decode(response));
     } catch (e) {
-      return null;
+      return PageModel();
     }
   }
 
@@ -33,6 +33,8 @@ class RestCall {
 
     var request = await _httpClient.getUrl(uri);
     var response = await request.close();
-    return response.transform(utf8.decoder).join();
+    var utf8content = response.transform(utf8.decoder).join();
+    print(utf8content);
+    return utf8content;
   }
 }
