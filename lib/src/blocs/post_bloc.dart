@@ -1,0 +1,30 @@
+import 'dart:async';
+
+import 'package:rxdart/rxdart.dart';
+import '../models/post_model.dart';
+import '../blocs/bloc_provider.dart';
+import '../resources/repository.dart';
+
+class PostBloc extends BlocBase {
+  final _repository = Repository();
+
+  PublishSubject<List<Post>> _postController = PublishSubject<List<Post>>();
+
+  Sink<List<Post>> get _inPostList => _postController.sink;
+
+  Stream<List<Post>> get outPostList => _postController.stream;
+
+  fetchAllPost() async {
+    PostModel postModel = await _repository.fetchAllPosts();
+    postModel.results ?? _inPostList.add(postModel.results);
+  }
+
+  PostBloc() {
+    fetchAllPost();
+  }
+
+  dispose() {
+    _postController.close();
+    _inPostList.close();
+  }
+}
