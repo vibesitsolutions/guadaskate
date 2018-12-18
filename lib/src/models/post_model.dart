@@ -21,7 +21,7 @@ class Post {
   String _link;
   String _content;
   String _commentStatus;
-  int _author;
+  String _author;
 
   Post(post) {
     _id = post['id'];
@@ -31,12 +31,12 @@ class Post {
     _link = post['link'];
     _content = post['content']['rendered'];
     _commentStatus = post['open'];
-    _author = post['author'];
+    _author = post['_embedded']["author"]["name"];
   }
 
   int get id => _id;
 
-  int get author => _author;
+  String get author => _author;
 
   String get commentStatus => _commentStatus;
 
