@@ -32,6 +32,7 @@ class RestCall {
     var uri = Uri.https(Global.baseUrl, Global.apiUrl + type);
 
     var request = await _httpClient.getUrl(uri);
+    request.headers.add("Accept", "application/json");
     var response = await request.close();
     var utf8content = response.transform(utf8.decoder).join();
     print(utf8content);
