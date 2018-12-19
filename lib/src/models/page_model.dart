@@ -8,8 +8,6 @@ class PageModel {
     }
   }
 
-  PageModel();
-
   List<Page> get results => _results;
 }
 
@@ -21,7 +19,6 @@ class Page {
   String _link;
   String _content;
   String _commentStatus;
-  int _author;
 
   Page(page) {
     _id = page['id'];
@@ -31,12 +28,9 @@ class Page {
     _link = page['link'];
     _content = page['content']['rendered'];
     _commentStatus = page['open'];
-    _author = page['author'];
   }
 
   int get id => _id;
-
-  int get author => _author;
 
   String get commentStatus => _commentStatus;
 

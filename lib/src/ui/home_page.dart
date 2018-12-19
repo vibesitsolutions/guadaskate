@@ -4,12 +4,14 @@ import 'package:guadaskate/src/blocs/page_bloc.dart';
 import 'package:guadaskate/src/blocs/post_bloc.dart';
 import 'package:guadaskate/src/ui/page_page.dart';
 import 'package:guadaskate/src/ui/post_page.dart';
+import 'package:guadaskate/src/widget/drawer.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('My Movies')),
+      appBar: AppBar(title: Text('Guadalajara Show 2018')),
+      drawer: MyDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -33,8 +35,7 @@ class HomePage extends StatelessWidget {
   }
 
   void _openPost(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
       return BlocProvider<PostBloc>(
         bloc: PostBloc(),
         child: PostPage(),
@@ -43,8 +44,7 @@ class HomePage extends StatelessWidget {
   }
 
   void _openPage(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
       return BlocProvider<PageBloc>(
         bloc: PageBloc(),
         child: PagePage(),
