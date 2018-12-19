@@ -1,17 +1,16 @@
 import 'dart:async';
 
+import 'package:guadaskate/src/blocs/bloc_provider.dart';
 import 'package:rxdart/rxdart.dart';
+
 import '../models/page_model.dart';
-import '../blocs/bloc_provider.dart';
 import '../resources/repository.dart';
 
 class PageBloc extends BlocBase {
   final _repository = Repository();
 
   PublishSubject<List<Page>> _pageController = PublishSubject<List<Page>>();
-
   Sink<List<Page>> get _inPageList => _pageController.sink;
-
   Stream<List<Page>> get outPageList => _pageController.stream;
 
   fetchAllPages() async {

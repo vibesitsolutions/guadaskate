@@ -1,52 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:guadaskate/src/theme/main_theme.dart';
 
-class MyDrawer extends StatefulWidget {
-  final String username, mail;
-
-  MyDrawer({
-    Key key,
-    @required this.username,
-    @required this.mail,
-  }) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _MyDrawerState();
-}
-
-class _MyDrawerState extends State<MyDrawer> {
-  bool _isLogged = false;
-
+class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      elevation: 16.0,
       child: ListView(
         padding: EdgeInsets.all(0.0),
         children: <Widget>[
-          _isLogged
-              ? UserAccountsDrawerHeader(
-                  accountName: Text(widget.mail ?? ""),
-                  accountEmail: Text(widget.username ?? "Invitado"),
-                  currentAccountPicture:
-                      CircleAvatar(child: Text(widget.username.substring(0, 1) ?? "I"), backgroundColor: Colors.white, radius: 10.0),
-                  decoration: BoxDecoration(color: Colors.pink))
-              : Container(),
+          Container(
+            child: Text("Bienvenidos Guadalajara Show",
+                style: MainTheme.textStyle()),
+            decoration: BoxDecoration(color: Colors.pink),
+            padding: EdgeInsets.all(20.0),
+          ),
           ListTile(
-            title: Text('Ver posts'),
+            leading: Icon(Icons.new_releases),
+            title: Text('Nuevas noticias'),
             onTap: () {
               // Update the state of the app
               // ...
             },
           ),
           ListTile(
-            title: Text('Ver paginas'),
-            onTap: () {
-              // Update the state of the app
-              // ...
-            },
-          ),
-          ListTile(
+            leading: Icon(Icons.forum),
             title: Text('Foro'),
+            onTap: () {
+              // Update the state of the app
+              // ...
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.input),
+            title: Text('Iniciar Sesion'),
             onTap: () {
               // Update the state of the app
               // ...

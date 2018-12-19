@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:guadaskate/src/blocs/bloc_provider.dart';
 import 'package:html2md/html2md.dart' as html2md;
 
-import '../blocs/bloc_provider.dart';
 import '../blocs/post_bloc.dart';
 import '../models/post_model.dart';
 
@@ -25,7 +25,8 @@ class PostPage extends StatelessWidget {
           Expanded(
             child: StreamBuilder(
                 stream: _postBloc.outPostList,
-                builder: (BuildContext context, AsyncSnapshot<List<Post>> posts) {
+                builder:
+                    (BuildContext context, AsyncSnapshot<List<Post>> posts) {
                   if (posts.hasData)
                     return _buildList(posts);
                   else if (posts.hasError) {
@@ -42,11 +43,14 @@ class PostPage extends StatelessWidget {
   Widget _buildList(AsyncSnapshot<List<Post>> posts) {
     return GridView.builder(
         itemCount: posts.data.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
         itemBuilder: (BuildContext context, int index) {
           return Card(
-              child: Column(children: <Widget>[Text(posts.data[index].title),
-              MarkdownBody(data: html2md.convert(posts.data[index].content))]));
+              child: Column(children: <Widget>[
+            Text(posts.data[index].title),
+            MarkdownBody(data: html2md.convert(posts.data[index].content))
+          ]));
         });
   }
 }

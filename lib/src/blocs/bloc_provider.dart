@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 Type _typeOf<T>() => T;
@@ -54,5 +53,5 @@ class _BlocProviderInherited<T> extends InheritedWidget {
   final T bloc;
 
   @override
-  bool updateShouldNotify(_BlocProviderInherited oldWidget) => true;
+  bool updateShouldNotify(_BlocProviderInherited oldWidget) => false;
 }

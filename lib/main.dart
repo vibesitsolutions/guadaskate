@@ -1,18 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:guadaskate/src/blocs/bloc_provider.dart';
-import 'package:guadaskate/src/blocs/post_bloc.dart';
 import 'package:guadaskate/src/theme/main_theme.dart';
 import 'package:guadaskate/src/ui/home_page.dart';
 
 Future<void> main() async {
-  return runApp(
-    BlocProvider<PostBloc>(
-      bloc: PostBloc(),
-      child: App()
-    )
-  );
+  return runApp(App());
 }
 
 class App extends StatelessWidget {

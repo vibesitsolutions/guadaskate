@@ -10,4 +10,9 @@ class MainTheme {
             title: TextStyle(fontSize: 36.0),
             body1: TextStyle(fontSize: 14.0)));
   }
+
+  static TextStyle textStyle() {
+    return TextStyle(
+        color: Colors.white, fontSize: 24.0, fontWeight: FontWeight.bold);
+  }
 }

@@ -1,8 +1,9 @@
 import 'dart:async';
 
+import 'package:guadaskate/src/blocs/bloc_provider.dart';
 import 'package:rxdart/rxdart.dart';
+
 import '../models/post_model.dart';
-import '../blocs/bloc_provider.dart';
 import '../resources/repository.dart';
 
 class PostBloc extends BlocBase {
