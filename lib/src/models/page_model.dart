@@ -1,7 +1,14 @@
-class PageModel {
+import 'package:guadaskate/src/models/model_helper.dart';
+
+class PageModel extends Model<Page> {
   List<Page> _results = [];
 
   PageModel.fromJson(List json) {
+    fromJson(json);
+  }
+
+  @override
+  void fromJson(List json) {
     for (int i = 0; i < json.length; i++) {
       Page page = Page(json[i]);
       _results.add(page);

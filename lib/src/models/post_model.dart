@@ -1,7 +1,14 @@
-class PostModel {
+import 'package:guadaskate/src/models/model_helper.dart';
+
+class PostModel extends Model<Post> {
   List<Post> _results = [];
 
   PostModel.fromJson(List json) {
+    fromJson(json);
+  }
+
+  @override
+  void fromJson(List json) {
     for (int i = 0; i < json.length; i++) {
       Post post = Post(json[i]);
       _results.add(post);

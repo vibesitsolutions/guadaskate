@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:bloc/bloc.dart';
 import 'package:guadaskate/src/blocs/login/login_event.dart';
 import 'package:guadaskate/src/blocs/login/login_state.dart';
 import 'package:meta/meta.dart';
-import 'package:bloc/bloc.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginState get initialState => LoginState.initial();

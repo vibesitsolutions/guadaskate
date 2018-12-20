@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:guadaskate/src/models/model_helper.dart';
+
 import '../config/globals.dart';
 import '../models/page_model.dart';
 import '../models/post_model.dart';
@@ -9,14 +11,22 @@ import '../models/post_model.dart';
 class RestCall {
   final _httpClient = new HttpClient();
 
-  Future<PostModel> postList() async {
+  Future<Model> postList() async {
     String response = await _getRequest(Global.posts);
-    return PostModel.fromJson(json.decode(response));
+    Map<String, dynamic> responseData = json.decode(response);
+    if (responseData["status"] != "ok") {
+      print("Data returned error: ${responseData["error"]}");
+    }
+    return PostModel.fromJson(responseData["posts"]);
   }
 
-  Future<PageModel> pageList() async {
-    String response = await _getRequest(Global.pages);
-    return PageModel.fromJson(json.decode(response));
+  Future<Model> pageList() async {
+    String response = await _getRequest(Global.posts);
+    Map<String, dynamic> responseData = json.decode(response);
+    if (responseData["status"] != "ok") {
+      print("Data returned error: ${responseData["error"]}");
+    }
+    return PostModel.fromJson(responseData["pages"]);
   }
 
   Future<String> _getRequest(String type) async {

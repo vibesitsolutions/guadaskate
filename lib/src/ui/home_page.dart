@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:guadaskate/src/blocs/bloc_provider.dart';
-import 'package:guadaskate/src/blocs/page_bloc.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:guadaskate/src/blocs/pages/pages_posts_bloc.dart';
 import 'package:guadaskate/src/ui/page_page.dart';
 import 'package:guadaskate/src/widget/drawer.dart';
 
@@ -21,8 +23,7 @@ class HomePage extends StatelessWidget {
             tooltip: "Iniciar sesion")
       ]),
       drawer: MyDrawer(),
-      body: Center(
-          child: BlocProvider<PageBloc>(child: PagePage(), bloc: PageBloc())),
+      body: Center(child: PagePage()),
     ));
   }
 

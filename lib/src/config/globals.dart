@@ -5,4 +5,7 @@ class Global {
 
   static String get posts => "posts";
   static String get pages => "pages";
+
+  static String get typePage => "get_page_index";
+  static String get typePost => "get_posts";
 }
