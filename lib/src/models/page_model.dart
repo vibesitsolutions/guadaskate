@@ -1,4 +1,4 @@
-import 'package:guadaskate/src/models/model_helper.dart';
+import 'package:guadaskate/src/models/model.dart';
 
 class PageModel extends Model<Page> {
   List<Page> _results = [];
@@ -23,7 +23,7 @@ class Page {
   String _date;
   String _lastModify;
   String _title;
-  String _link;
+  String _url;
   String _content;
   String _commentStatus;
 
@@ -31,10 +31,9 @@ class Page {
     _id = page['id'];
     _date = page['date'];
     _lastModify = page['modified'];
-    _title = page['title']['rendered'];
-    _link = page['link'];
-    _content = page['content']['rendered'];
-    _commentStatus = page['open'];
+    _title = page['title_plain'];
+    _url = page['url'];
+    _content = page['excerpt'];
   }
 
   int get id => _id;
@@ -43,7 +42,7 @@ class Page {
 
   String get content => _content;
 
-  String get link => _link;
+  String get link => _url;
 
   String get title => _title;
 

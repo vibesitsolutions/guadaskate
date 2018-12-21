@@ -1,4 +1,4 @@
-import 'package:guadaskate/src/models/model_helper.dart';
+import 'package:guadaskate/src/models/model.dart';
 
 class PostModel extends Model<Post> {
   List<Post> _results = [];

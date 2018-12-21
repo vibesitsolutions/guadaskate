@@ -1,25 +1,21 @@
 import 'dart:async';
 
-import 'package:guadaskate/src/blocs/login/login_event.dart';
-import 'package:guadaskate/src/blocs/login/login_state.dart';
+import 'package:bloc/bloc.dart';
 import 'package:guadaskate/src/blocs/pages/pages_posts_event.dart';
 import 'package:guadaskate/src/blocs/pages/pages_posts_state.dart';
-import 'package:guadaskate/src/config/globals.dart';
-import 'package:guadaskate/src/models/model_helper.dart';
-import 'package:guadaskate/src/models/page_model.dart';
-import 'package:guadaskate/src/resources/repository.dart';
-import 'package:meta/meta.dart';
-import 'package:bloc/bloc.dart';
+import 'package:guadaskate/src/models/model.dart';
 
 class PagesPostBloc extends Bloc<PagesPostEvent, PagesPostState> {
+
+
   void onPagesRefreshPressed(String type) {
     dispatch(
-      PagesPostsDataInitial(),
+        PagesPostsDataLoading(type: type)
     );
   }
 
   void onPagesSuccess({Model model}) {
-    dispatch(PagesPostsDataLoading(model: model));
+    dispatch(PagesPostsDataInitial(),);
   }
 
   @override
@@ -47,11 +43,7 @@ class PagesPostBloc extends Bloc<PagesPostEvent, PagesPostState> {
   }
 
   Future<Model> _getData(String type) async {
-    final _repository = Repository();
-    Model model;
-    if (type == Global.typePage)
-      model = await _repository.fetchAllPages();
-    else if (type == Global.typePost) model = await _repository.fetchAllPosts();
+    Model model = await ModelFactory.getModel(type);
     return model;
   }
 }

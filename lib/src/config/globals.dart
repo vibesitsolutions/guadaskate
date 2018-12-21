@@ -1,11 +1,18 @@
 class Global {
-  static String get baseUrl => "thisisatest.cloudaccess.host";
-  //static String get baseUrl => "patinajeguadalajara.com";
-  static String get apiUrl => "/wp-json/wp/v2/";
+  static const baseUrl = "thisisatest.cloudaccess.host";
+  //static const baseUrl => "patinajeguadalajara.com";
+  static const apiUrl = "/api/";
 
-  static String get posts => "posts";
-  static String get pages => "pages";
+  static String get pageList => "get_page_index";
+  static String get postList => "get_posts";
+  static String getPage(String id) => "get_page/$id";
+  static String getPost(String id) => "get_post/$id";
+  static String get mainPage => "";
 
-  static String get typePage => "get_page_index";
-  static String get typePost => "get_posts";
+  static const typePageList = "pageList";
+  static const typePostList = "postList";
+  static const typePage = "page";
+  static const typePost = "post";
+  static const typeMainPage = "mainPage";
+
 }
