@@ -2,13 +2,13 @@
 
 Application creating for Guadalajara Skating World's 2018
 
-## V 0.1
+## v0.1
 In this release we are implementing the following requirements:
 
  - Navigation drawer (with mocked static data)
  - Internationalization support (No implementation)
 
-## V 1.0
+## v1.0
 In this release we are implementing the following requirements:
  - Corporative colors
  - Navigation drawer (with real static data)
@@ -18,7 +18,7 @@ In this release we are implementing the following requirements:
  - No comments allowed in posts
  - Internationalization (App & Content)
  
-## V 2.0
+## v2.0
 In this release we are implementing the following requirements:
  - Social network. Allow users to:
 	 - Create new threads
@@ -28,6 +28,7 @@ In this release we are implementing the following requirements:
 
 ## Wordpress testing site
 **hosting**: https://ccp.cloudaccess.net/clientarea.php
+
 **wp site**: https://thisisatest.cloudaccess.host/
 
 ## TODO
