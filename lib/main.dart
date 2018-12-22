@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guadaskate/src/blocs/pages/pages_posts_bloc.dart';
 import 'package:guadaskate/src/config/globals.dart';
 import 'package:guadaskate/src/theme/main_theme.dart';
-import 'package:guadaskate/src/ui/home_page.dart';
 import 'package:guadaskate/src/widget/drawer.dart';
 
 void main() {
@@ -46,7 +45,8 @@ class AppState extends State<App> {
         theme: MainTheme.getMainTheme(),
         home: SafeArea(
           child: Scaffold(
-            appBar: AppBar(title: Text('Guadalajara Show 2018'), actions: <Widget>[
+            appBar:
+                AppBar(title: Text('Guadalajara Show 2018'), actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.language),
                 onPressed: _onLanguagePressed,
@@ -59,7 +59,7 @@ class AppState extends State<App> {
               ),
             ]),
             drawer: MyDrawer(),
-            body: HomePage(),
+            body: Center(child: Text("content")),
           ),
         ),
       ),
