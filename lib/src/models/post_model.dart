@@ -3,12 +3,12 @@ import 'package:guadaskate/src/models/model.dart';
 class PostModel extends Model<Post> {
   List<Post> _results = [];
 
-  PostModel.fromJson(List json) {
+  PostModel.fromJson(dynamic json) {
     fromJson(json);
   }
 
   @override
-  void fromJson(List json) {
+  void fromJson(dynamic json) {
     for (int i = 0; i < json.length; i++) {
       Post post = Post(json[i]);
       _results.add(post);
@@ -16,6 +16,8 @@ class PostModel extends Model<Post> {
   }
 
   List<Post> get results => _results;
+
+  Post get singleResult => null; //TODO: Apply same model than page
 }
 
 class Post {

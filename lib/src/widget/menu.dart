@@ -3,6 +3,9 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:guadaskate/src/blocs/pages/pages_posts_bloc.dart';
+import 'package:guadaskate/src/config/globals.dart';
 import 'package:guadaskate/src/theme/main_theme.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -26,55 +29,11 @@ class Entry {
 
 // The entire multilevel list displayed by this app.
 final List data = [
-  Entry(
-    'El club',
-    [
-      Entry('La historia'),
-      Entry(
-        'Funcionamiento interno',
-        [
-          Entry('Normas deportivas de régimen interno'),
-        ],
-      ),
-      Entry('Recursos técnicos', [
-        Entry('Pruebas e integrativos'),
-        Entry('Archivos Digitales'),
-        Entry('Eventos 2015'),
-        Entry('Album de fotos – Beta'),
-      ]),
-      Entry('Contacto')
-    ],
-  ),
-  Entry(
-    'Show',
-    [
-      Entry('Coreografías', [Entry('2015 – Vuelve')]),
-    ],
-  ),
-  Entry('Noticias'),
-  Entry(
-    'Patinar en Guadalajara',
-    [
-      Entry(
-        'Escuela de Patinaje Artístico de Fontanar',
-        [
-          Entry('Historia de la E.P.A. de Fontanar'),
-          Entry('Solicitud de Plaza 2018/19 EPA Fontanar'),
-        ],
-      ),
-      Entry(
-        'Escuela de patinaje de Guadalajara',
-        [
-          Entry(
-            'Curso 2018-19',
-            [
-              Entry('Inscripción Parque de La Muñeca 2018-19'),
-            ],
-          ),
-        ],
-      ),
-    ],
-  ),
+  Entry("Grupo 1", [Entry("Activity")]),
+  Entry("Grupo 2", [
+    Entry("Grupo 2.1", [Entry("Members")]),
+    Entry("Grupo 2.2", [Entry("Sample page")]),
+  ]),
 ];
 
 // Displays one Entry. If the entry has children then it's displayed
@@ -84,7 +43,7 @@ class EntryItem extends StatelessWidget {
 
   final Entry entry;
 
-  Widget _buildTiles(Entry root, [int level = 0]) {
+  Widget _buildTiles(BuildContext context, Entry root, [int level = 0]) {
     level++;
     if (root.children.isEmpty)
       return ListTile(
@@ -92,6 +51,9 @@ class EntryItem extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(5.0 * level, 0, 0, 0),
           child: Text(root.title, style: MainTheme.navMenuTextStyle()),
         ),
+        onTap: () {
+          _onTapPressed(context, root.title);
+        },
       );
     return ExpansionTile(
       key: PageStorageKey<Entry>(root),
@@ -99,12 +61,21 @@ class EntryItem extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(5.0 * level, 0, 0, 0),
         child: Text(root.title, style: MainTheme.navMenuTextStyle()),
       ),
-      children: root.children.map((m) => _buildTiles(m, level)).toList(),
+      children:
+          root.children.map((m) => _buildTiles(context, m, level)).toList(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return _buildTiles(entry);
+    return _buildTiles(context, entry);
+  }
+
+  void _onTapPressed(BuildContext context, String title) {
+    PagesPostBloc pagesPostBloc = BlocProvider.of<PagesPostBloc>(context);
+    // Process the title to uppercase and replace spaces with dashes
+    String id = title.toUpperCase().replaceAll(' ', '-');
+    pagesPostBloc.onGetPage(Global.typePage, id);
+    Navigator.pop(context);
   }
 }

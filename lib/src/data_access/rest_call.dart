@@ -31,8 +31,18 @@ class RestCall {
     return await _getRequest(Global.mainPage);
   }
 
-  Future<String> _getRequest(String type) async {
-    var uri = Uri.https(Global.baseUrl, Global.apiUrl + type, {"_embed": ""});
+  Future<PageModel> getPage(String id) async {
+    String response = await _getRequest(Global.page, getParams: {"slug": id});
+    Map<String, dynamic> responseData = json.decode(response);
+    if (responseData["status"] != "ok") {
+      print("Data returned error: ${responseData["error"]}");
+    }
+    return PageModel.fromJson(responseData["page"]);
+  }
+
+  Future<String> _getRequest(String type,
+      {Map<String, String> getParams}) async {
+    var uri = Uri.https(Global.baseUrl, Global.apiUrl + type, getParams);
     print(uri);
     var request = await _httpClient.getUrl(uri);
     request.headers.add("Accept", "application/json");

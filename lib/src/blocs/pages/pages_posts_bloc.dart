@@ -6,16 +6,14 @@ import 'package:guadaskate/src/blocs/pages/pages_posts_state.dart';
 import 'package:guadaskate/src/models/model.dart';
 
 class PagesPostBloc extends Bloc<PagesPostEvent, PagesPostState> {
-
-
-  void onPagesRefreshPressed(String type) {
-    dispatch(
-        PagesPostsDataLoading(type: type)
-    );
+  void onGetPage(String type, String id) {
+    dispatch(PagesPostsDataLoading(type: type, id: id));
   }
 
   void onPagesSuccess({Model model}) {
-    dispatch(PagesPostsDataInitial(),);
+    dispatch(
+      PagesPostsNoData(),
+    );
   }
 
   @override
@@ -30,20 +28,21 @@ class PagesPostBloc extends Bloc<PagesPostEvent, PagesPostState> {
       yield PagesPostState.loading();
 
       try {
-        Model model = await _getData(event.type);
+        Model model = await _getData(event.type, event.id);
         yield PagesPostState.success(model);
       } catch (error) {
+        print(error);
         yield PagesPostState.failure(error.toString());
       }
     }
 
-    if (event is PagesPostsDataInitial) {
+    if (event is PagesPostsNoData) {
       yield PagesPostState.idle();
     }
   }
 
-  Future<Model> _getData(String type) async {
-    Model model = await ModelFactory.getModel(type);
+  Future<Model> _getData(String type, String id) async {
+    Model model = await ModelFactory.getModel(type, id);
     return model;
   }
 }

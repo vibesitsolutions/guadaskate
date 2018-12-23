@@ -5,8 +5,8 @@ class Global {
 
   static String get pageList => "get_page_index";
   static String get postList => "get_posts";
-  static String getPage(String id) => "get_page/$id";
-  static String getPost(String id) => "get_post/$id";
+  static String get page => "get_page";
+  static String get post => "get_post";
   static String get mainPage => "";
 
   static const typePageList = "pageList";
@@ -14,5 +14,4 @@ class Global {
   static const typePage = "page";
   static const typePost = "post";
   static const typeMainPage = "mainPage";
-
 }

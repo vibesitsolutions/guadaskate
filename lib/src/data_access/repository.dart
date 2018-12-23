@@ -13,5 +13,5 @@ class Repository {
 
   Future<String> fetchMainPage() => restCall.homePage();
 
+  Future<PageModel> fetchPage(String id) => restCall.getPage(id);
 }
-

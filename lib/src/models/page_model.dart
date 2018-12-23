@@ -2,18 +2,26 @@ import 'package:guadaskate/src/models/model.dart';
 
 class PageModel extends Model<Page> {
   List<Page> _results = [];
+  Page _singleResult;
 
-  PageModel.fromJson(List json) {
+  PageModel.fromJson(dynamic json) {
     fromJson(json);
   }
 
   @override
-  void fromJson(List json) {
-    for (int i = 0; i < json.length; i++) {
-      Page page = Page(json[i]);
-      _results.add(page);
+  void fromJson(dynamic json) {
+    if (json is List) {
+      for (int i = 0; i < json.length; i++) {
+        Page page = Page(json[i]);
+        _results.add(page);
+      }
+    }
+    if (json is Map) {
+      _singleResult = Page(json);
     }
   }
+
+  Page get singleResult => _singleResult;
 
   List<Page> get results => _results;
 }
