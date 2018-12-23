@@ -1,16 +1,38 @@
-# guadaskate
+# Guadaskate
 
-Application for Guadalajara Skating World&#x27;s 2018
+Application creating for Guadalajara Skating World's 2018
 
-## Getting Started
+## v0.1
+In this release we are implementing the following requirements:
 
-This project is a starting point for a Flutter application.
+ - Navigation drawer (with mocked static data)
+ - Internationalization support (No implementation)
 
-A few resources to get you started if this is your first Flutter project:
+## v1.0
+In this release we are implementing the following requirements:
+ - Corporative colors
+ - Navigation drawer (with real static data)
+ - Create final layout
+ - Show information about pages and post
+ - Push notifications from wp to app
+ - No comments allowed in posts
+ - Internationalization (App & Content)
+ 
+## v2.0
+In this release we are implementing the following requirements:
+ - Social network. Allow users to:
+	 - Create new threads
+	 - Comment in threads
+	 - Upload images
+ - Twitter and Intagram feed read (from hashtags)
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+## Wordpress testing site
+**hosting**: https://ccp.cloudaccess.net/clientarea.php
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+**wp site**: https://thisisatest.cloudaccess.host/
+
+## TODO
+
+ - Internationalizatoin
+ - Pages layout
+ - Social network
