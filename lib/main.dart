@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:guadaskate/src/blocs/language/language_bloc.dart';
 import 'package:guadaskate/src/blocs/pages/pages_posts_bloc.dart';
 import 'package:guadaskate/src/config/globals.dart';
 import 'package:guadaskate/src/theme/main_theme.dart';
@@ -27,12 +26,9 @@ class App extends StatefulWidget {
 
 class AppState extends State<App> {
   final PagesPostBloc _pagesPostBloc = PagesPostBloc();
-  final LanguageBloc _languageBloc = LanguageBloc();
-  String _locale;
 
   AppState() {
     _pagesPostBloc.onGetPage(Global.typePage, "sample-page");
-    _locale = "es";
   }
 
   @override
