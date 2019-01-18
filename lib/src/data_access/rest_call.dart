@@ -10,7 +10,7 @@ class RestCall {
   final _httpClient = new HttpClient();
 
   Future<PostModel> postList() async {
-    String response = await _getRequest(Global.postList);
+    String response = await _getRequest(global.postList);
     Map<String, dynamic> responseData = json.decode(response);
     if (responseData["status"] != "ok") {
       print("Data returned error: ${responseData["error"]}");
@@ -19,7 +19,7 @@ class RestCall {
   }
 
   Future<PageModel> pageList() async {
-    String response = await _getRequest(Global.pageList);
+    String response = await _getRequest(global.pageList);
     Map<String, dynamic> responseData = json.decode(response);
     if (responseData["status"] != "ok") {
       print("Data returned error: ${responseData["error"]}");
@@ -28,11 +28,11 @@ class RestCall {
   }
 
   Future<String> homePage() async {
-    return await _getRequest(Global.mainPage);
+    return await _getRequest(global.mainPage);
   }
 
   Future<PageModel> getPage(String id) async {
-    String response = await _getRequest(Global.page, getParams: {"slug": id});
+    String response = await _getRequest(global.page, getParams: {"slug": id});
     Map<String, dynamic> responseData = json.decode(response);
     if (responseData["status"] != "ok") {
       print("Data returned error: ${responseData["error"]}");
@@ -42,7 +42,7 @@ class RestCall {
 
   Future<String> _getRequest(String type,
       {Map<String, String> getParams}) async {
-    var uri = Uri.https(Global.baseUrl, Global.apiUrl + type, getParams);
+    var uri = Uri.https(global.baseUrl, global.apiUrl + type, getParams);
     print(uri);
     var request = await _httpClient.getUrl(uri);
     request.headers.add("Accept", "application/json");

@@ -1,11 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:guadaskate/src/blocs/pages/pages_posts_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:guadaskate/src/blocs/locale/locale_bloc.dart';
+import 'package:guadaskate/src/blocs/locale/locale_event.dart';
+import 'package:guadaskate/src/blocs/locale/locale_state.dart';
 import 'package:guadaskate/src/config/globals.dart';
+import 'package:guadaskate/src/lang/lang_localizations.dart';
 import 'package:guadaskate/src/theme/main_theme.dart';
-import 'package:guadaskate/src/ui/page_page.dart';
-import 'package:guadaskate/src/widget/drawer.dart';
+import 'package:guadaskate/src/ui/home_page.dart';
 
 void main() {
   BlocSupervisor().delegate = SimpleBlocDelegate();
@@ -25,51 +28,45 @@ class App extends StatefulWidget {
 }
 
 class AppState extends State<App> {
-  final PagesPostBloc _pagesPostBloc = PagesPostBloc();
-
-  AppState() {
-    _pagesPostBloc.onGetPage(Global.typePage, "sample-page");
-  }
+  final LocaleBloc _localeBloc = LocaleBloc();
+  LangLocalizationsDelegate delegate = LangLocalizationsDelegate();
+  LangLocalizationsDelegate _localeOverrideDelegate;
 
   @override
   void dispose() {
-    _pagesPostBloc.dispose();
+    _localeBloc.dispose();
     super.dispose();
   }
 
   @override
+  void initState(){
+    super.initState();
+    _localeOverrideDelegate = new LangLocalizationsDelegate();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider<PagesPostBloc>(
-      bloc: _pagesPostBloc,
-      child: MaterialApp(
-        title: 'Guadalajara Show',
-        theme: MainTheme.getMainTheme(),
-        home: SafeArea(
-          child: Scaffold(
-            appBar: AppBar(
-              title: Text('Guadalajara Show 2018'),
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.language),
-                  onPressed: () => _onLanguagePressed(context),
-                  tooltip: "Idioma",
-                ),
-                IconButton(
-                  icon: Icon(Icons.input),
-                  onPressed: _onLoginPressed,
-                  tooltip: "Iniciar sesion",
-                ),
-              ],
-            ),
-            drawer: MyDrawer(),
-            body: PagePage(pagesPostBloc: _pagesPostBloc),
-          ),
-        ),
+    return BlocProvider<LocaleBloc>(
+      bloc: _localeBloc,
+      child: BlocBuilder<LocaleEvent, LocaleState>(
+        bloc: _localeBloc,
+        builder: (context, state) {
+          if(state.hasChanged) {
+            print("LocaleBloc - Locale has changed: ${state.locale}");
+            _localeOverrideDelegate = new LangLocalizationsDelegate(newLocale: Locale(state.locale));
+          }
+          return MaterialApp(
+            localizationsDelegates: [
+              _localeOverrideDelegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            supportedLocales: global.supportedLocales.map((f) => Locale(f)),
+            theme: MainTheme.getMainTheme(),
+            home: HomePage(),
+          );
+        },
       ),
     );
   }
-
-  void _onLanguagePressed(context) {}
-
-  void _onLoginPressed() {}
 }

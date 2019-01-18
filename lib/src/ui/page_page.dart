@@ -3,32 +3,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guadaskate/src/blocs/pages/pages_posts_bloc.dart';
 import 'package:guadaskate/src/blocs/pages/pages_posts_event.dart';
 import 'package:guadaskate/src/blocs/pages/pages_posts_state.dart';
+import 'package:guadaskate/src/config/globals.dart';
+import 'package:guadaskate/src/lang/lang_localizations.dart';
 import 'package:guadaskate/src/models/model.dart';
-import 'package:flutter_html/flutter_html.dart';
 
 class PagePage extends StatefulWidget {
-  final PagesPostBloc _pagesPostBloc;
-
-  PagePage({Key key, @required PagesPostBloc pagesPostBloc})
-      : _pagesPostBloc = pagesPostBloc;
 
   @override
   State<PagePage> createState() {
-    return PagePageState(pagesPostBloc: _pagesPostBloc);
+    return PagePageState();
   }
 }
 
 class PagePageState extends State<PagePage> {
-  final PagesPostBloc _pagesPostBloc;
+  final PagesPostBloc _pagesPostBloc = PagesPostBloc();
 
-  PagePageState({@required PagesPostBloc pagesPostBloc})
-      : _pagesPostBloc = pagesPostBloc;
+  PagePageState(){
+    _pagesPostBloc.onGetPage(Global.typePage, "sample-page");
+  }
 
   @override
   Widget build(BuildContext context) {
-    final PagesPostBloc pagesPostBloc = BlocProvider.of<PagesPostBloc>(context);
+    print("PagePage - ${Localizations.localeOf(context).toString()}");
     return BlocBuilder<PagesPostEvent, PagesPostState>(
-        bloc: pagesPostBloc,
+        bloc: _pagesPostBloc,
         builder: (BuildContext context, PagesPostState state) {
           if (state.isError) {
             return Text("An error has ocurred");
@@ -45,9 +43,10 @@ class PagePageState extends State<PagePage> {
 
   Widget _buildList(Model model) {
     return Container(
-        child: Html(
-      data: model.singleResult.content,
-    ));
+      child: Text(
+        LangLocalizations.of(context).body,
+      ),
+    );
   }
 
   Widget _loadingIndicator() {

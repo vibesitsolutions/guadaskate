@@ -1,0 +1,29 @@
+{
+  "@@last_modified": "2019-01-18T10:10:30.054157",
+  "title": "Hello translation",
+  "@title": {
+    "description": "App title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "languageSelector": "Select language",
+  "@languageSelector": {
+    "description": " Language Selector",
+    "type": "text",
+    "placeholders": {}
+  },
+  "messageCount": "{howMany,plural, =0{No messages}=1{{howMany} message}other{{howMany} messages}}",
+  "@messageCount": {
+    "description": "Message counter",
+    "type": "text",
+    "placeholders": {
+      "howMany": {}
+    }
+  },
+  "body": "This is a test",
+  "@body": {
+    "description": "Main body text",
+    "type": "text",
+    "placeholders": {}
+  }
+}

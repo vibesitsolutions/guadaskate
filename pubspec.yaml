@@ -6,13 +6,18 @@ author: Victor Martin <victormartin@vibesitsolutions.com>
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
   rxdart: ^0.20.0
   bloc: ^0.7.5
   flutter_bloc: ^0.4.9
-  flutter_html: ^0.8.2
-  flutter_localizations:
-    sdk: flutter
-  intl_translation: ^0.17.2
+
+  # Internationalization
+  intl: ^0.15.7
+  intl_translation: ^0.17.0
+
+  # Write preferences in disk
 
 
   # The following adds the Cupertino Icons font to your application.
