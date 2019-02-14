@@ -32,7 +32,6 @@ class _LanguageSelectorPageState extends State<LanguageSelectorPage> {
     return InkWell(
       onTap: () {
         localeBloc.onLocaleChange(currentLocale, language);
-        print("LanguageSelectorPage - selected language $language");
         Navigator.pop(context);
       },
       child: Center(

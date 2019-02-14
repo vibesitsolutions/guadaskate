@@ -29,19 +29,11 @@ class App extends StatefulWidget {
 
 class AppState extends State<App> {
   final LocaleBloc _localeBloc = LocaleBloc();
-  LangLocalizationsDelegate delegate = LangLocalizationsDelegate();
-  LangLocalizationsDelegate _localeOverrideDelegate;
 
   @override
   void dispose() {
     _localeBloc.dispose();
     super.dispose();
-  }
-
-  @override
-  void initState(){
-    super.initState();
-    _localeOverrideDelegate = new LangLocalizationsDelegate();
   }
 
   @override
@@ -51,13 +43,10 @@ class AppState extends State<App> {
       child: BlocBuilder<LocaleEvent, LocaleState>(
         bloc: _localeBloc,
         builder: (context, state) {
-          if(state.hasChanged) {
-            print("LocaleBloc - Locale has changed: ${state.locale}");
-            _localeOverrideDelegate = new LangLocalizationsDelegate(newLocale: Locale(state.locale));
-          }
           return MaterialApp(
+            locale: Locale(_localeBloc.currentState.locale),
             localizationsDelegates: [
-              _localeOverrideDelegate,
+              const LangLocalizationsDelegate(),
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],

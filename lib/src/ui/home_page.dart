@@ -1,53 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:guadaskate/src/lang/lang_localizations.dart';
-import 'package:guadaskate/src/ui/language_selector_page.dart';
-import 'package:guadaskate/src/ui/page_page.dart';
-import 'package:guadaskate/src/widget/drawer.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
-
-class HomePage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return HomePageState();
-  }
-}
-
-
-class HomePageState extends State<HomePage> {
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-      return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(LangLocalizations.of(context).title),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.language),
-                onPressed: () => _onLanguagePressed(context),
-                tooltip: "Idioma",
-              ),
-              IconButton(
-                icon: Icon(Icons.input),
-                onPressed: _onLoginPressed,
-                tooltip: "Iniciar sesion",
-              ),
-            ],
-          ),
-          drawer: MyDrawer(),
-          body: PagePage(),
-        ),
-      );
-  }
+    return SafeArea(
+      child: WebviewScaffold(
 
-  void _onLanguagePressed(context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context){
-        return LanguageSelectorPage();
-      })
+        url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2017.312.01.0006.01.ENG&toc=OJ:L:2017:312:TOC#d1e259-6-1",
+      ),
     );
   }
-
-  void _onLoginPressed() {}
-
 }

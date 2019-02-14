@@ -24,7 +24,6 @@ class PagePageState extends State<PagePage> {
 
   @override
   Widget build(BuildContext context) {
-    print("PagePage - ${Localizations.localeOf(context).toString()}");
     return BlocBuilder<PagesPostEvent, PagesPostState>(
         bloc: _pagesPostBloc,
         builder: (BuildContext context, PagesPostState state) {

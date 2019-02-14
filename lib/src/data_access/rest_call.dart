@@ -43,12 +43,10 @@ class RestCall {
   Future<String> _getRequest(String type,
       {Map<String, String> getParams}) async {
     var uri = Uri.https(global.baseUrl, global.apiUrl + type, getParams);
-    print(uri);
     var request = await _httpClient.getUrl(uri);
     request.headers.add("Accept", "application/json");
     var response = await request.close();
     var utf8content = response.transform(utf8.decoder).join();
-    print(utf8content);
     return utf8content;
   }
 }
